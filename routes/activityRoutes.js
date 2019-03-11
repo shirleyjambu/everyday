@@ -1,10 +1,5 @@
 const router = require("express").Router();
-const activityController = require("./../controller/activityController");
 const userController = require("./../controller/userController");
-const db = require('./../models');
-
-router.route("/activities")
-  .get(activityController.findAll); 
 
 router.route("/schedule")
   .get(userController.schedule); 

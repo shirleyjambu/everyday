@@ -33,10 +33,9 @@ class Weather extends Component {
     return(
       <React.Fragment>
         <Clock/>
-        
         {city}&nbsp;
+        {temp}{'\u00b0'}F
         <img src={icon} title={desc} alt={desc} />
-        {temp}{'\u00b0'}
       </React.Fragment>
     )
   

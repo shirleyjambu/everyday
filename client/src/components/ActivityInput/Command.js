@@ -64,20 +64,22 @@ class Command extends Component{
     <React.Fragment>
         <Content>
           <form onSubmit={this.props.handleSubmit}>
-          <div className="form-group">
+          <div className="control">
+            <div className="field">
             <label htmlFor="txtInput">Voice/Text Input</label>
+            <br/>
             <input
               onChange={this.handleInput}
               name="txtInput"
               type="text"
-              className="form-control"
+              className="input"
               placeholder="Enter Command"
               value={transcript || this.state.txtInput}
             />
-            <br />
-            
+            </div>
+                       
             {browserSupportsSpeechRecognition?
-                <div>
+                <div className="field">
                   <Button onClick={this.handleSubmit} color="danger" >Execute</Button>&nbsp;
                   <Button onClick={this.toggleListen} color="danger">{this.state.btnText}</Button>&nbsp;
                   <Button onClick={this.clearInput} color="danger">Reset</Button>

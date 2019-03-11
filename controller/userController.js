@@ -1,6 +1,48 @@
 const db = require("./../models");
 const jwt = require('jsonwebtoken');
 const secret = 'mysecretsshhh';
+const moment = require('moment');
+
+const prepareSchedule = (dbUser) =>{
+
+  let sArr = dbUser.schedule;
+
+  let fArr = sArr.filter(function(el) {
+      return moment(el.time).format('YYYYMMDD') === moment(new Date(Date.now())).format('YYYYMMDD');
+  });
+
+  fArr.sort(function(a,b){
+    //var dateA=new Date(a.time), dateB=new Date(b.time)
+    //return dateB-dateA //sort by date descending
+
+    var da = new Date(a).getTime();
+    var db = new Date(b).getTime();
+  
+    return da > db ? -1 : da < db ? 1 : 0
+  });
+
+  dbUser.schedule = fArr;
+  return dbUser;
+
+}
+
+const allSchedule = (dbUser) =>{
+  let allSchArr = [];
+  let sArr = dbUser.schedule;
+  sArr.forEach(s => {
+    let obj = {
+      title: s.note,
+      allDay: false,
+      start: new Date(2015, 3, 0),
+      end: new Date(2015, 3, 1)
+    }
+
+    allSchArr.push(obj);
+
+  })    
+   
+  return allSchArr;
+}
 
 module.exports = {
   // Create a User upon Registration
@@ -17,8 +59,11 @@ module.exports = {
   getUser(req, res) {
     console.log('user Controller :' + req.params.user_id);
     db.User
-      .findById('5c8299d4a955c968c819cdfc')
-      .then(dbUser => res.json(dbUser))
+      .findById({_id:'5c8299d4a955c968c819cdfc'})
+      .then((dbUser) => {
+        let uArr = prepareSchedule(dbUser);
+        res.json(uArr);
+      })
       .catch((err) => {
         console.log(err);
         res.json(err)
@@ -87,7 +132,8 @@ module.exports = {
     )
     .then(dbUser => {
       console.log(dbUser);
-      res.json(dbUser)})
+      let schedule = allSchedule(dbUser);
+      res.json(schedule)})
     .catch((err) => {
       console.log(err);
       res.json(err)

@@ -10,7 +10,7 @@ class Buy extends Component {
   render(){
     console.log(this.props.schedule);
     return(
-      <Tile renderAs="article" kind="child" notification color="purple">
+      <Tile renderAs="article" kind="child" notification color="info">
       <Heading>Shopping List</Heading>
       <Heading subtitle></Heading>
       {this.props.buy.map(

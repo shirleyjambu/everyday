@@ -20,10 +20,7 @@ class ActivityInput extends Component{
   }
 
   handleSubmit = (input) =>{
-    
-    alert('Here :' + input);
-    let section = Executer.parse(input, this.state.user_id);
-    console.log('Updated Section :' + section);
+    Executer.parse(input, this.state.user_id);
     this.props.refresh();
   }
 

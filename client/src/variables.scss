@@ -1,2 +1,22 @@
-$primary-color: #282c34;
-$secondary-color: #61dafb;
+$success:#e18335;
+$white:azure;
+$modal-background-background-color: rgba($white, 0.90);
+$modal-content-width: 500px;
+
+$schedule-light: hsl(175,20%,45%);
+$schedule-light-invert: findColorInvert($schedule-light);
+
+$schedule-dark: hsl(275,87%,45%);
+$schedule-dark-invert: findColorInvert($schedule-dark);
+
+$buy: hsl(275,87%,45%);
+$buy-invert: findColorInvert($buy);
+
+$expenses: hsl(275,87%,45%);
+$expenses-invert: findColorInvert($expenses);
+
+$weather: hsl(275,87%,45%);
+$weather-invert: findColorInvert($weather);
+
+$custom-colors:("schedule-dark": ($schedule-dark, $schedule-dark-invert),"buy": ($buy, $buy-invert),"expenses": ($expenses, $expenses-invert),"weather": ($weather, $weather-invert),
+"schedule-light": ($schedule-light, $schedule-light-invert))
