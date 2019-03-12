@@ -1,6 +1,6 @@
 import 'dotenv';
 import axios from "axios";
-const BASEURL = "http://api.openweathermap.org/data/2.5/weather?q=";
+const BASEURL = "https://api.openweathermap.org/data/2.5/weather?q=";
 const APIKEY = "&units=imperial&appid=" + process.env.REACT_APP_WEATHER_API_KEY;
 
 export default {
