@@ -46,7 +46,13 @@ class Command extends Component{
     this.setState({
       txtInput :''
     })
-  } 
+  }
+  
+  clear = () =>{
+    this.setState({
+      txtInput :''
+    })
+  }
 
   handleInput =(event) =>{
     const {name, value} = event.target;
@@ -57,8 +63,10 @@ class Command extends Component{
 
   handleSubmit=(event)=>{
     event.preventDefault();
+    const txtInput = this.state.txtInput
       
-    this.props.handleSubmit(this.props.finalTranscript || this.state.txtInput);
+    this.props.handleSubmit(this.props.finalTranscript || txtInput);
+    this.clear();
   }
 
   render(){

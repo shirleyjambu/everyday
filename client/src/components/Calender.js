@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import BigCalendar from 'react-big-calendar';
+import BigCalendar from 'react-big-calendar-like-google';
 import moment from 'moment';
-import 'react-big-calendar/lib/css/react-big-calendar.css';
+//import 'react-big-calendar-like-google/lib/css/react-big-calendar.css';
+import './calender.css';
 import API from './../utils/API';
 
 const localizer = BigCalendar.momentLocalizer(moment) ;
@@ -12,7 +13,7 @@ class Calender extends Component {
     query:'',
     view: "day",
     date: new Date(2019, 3, 10),
-    width: 500,
+    width: 640,
     events :[]
   };
 

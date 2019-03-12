@@ -7,8 +7,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class OpenModal extends Component {
   static propTypes = {
-    modal: PropTypes.object//,
-   // children: PropTypes.node.isRequired,
+    modal: PropTypes.object,
+    children: PropTypes.node.isRequired,
   };
 
   static defaultProps = {

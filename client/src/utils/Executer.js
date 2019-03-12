@@ -31,9 +31,9 @@ export default {
 
 
     let section = 'NA';
-    let doc = nlp(command.toLowerCase());
+    let doc = nlp(command);
     
-    let verb = doc.verbs().out('text').trim();
+    let verb = doc.verbs().out('text').trim().toLowerCase();
     let nouns = doc.nouns().out('text').trim();
     let values = doc.values().out('text').trim();
     let intValues = doc.values().toNumber().out().trim();

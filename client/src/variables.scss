@@ -1,10 +1,12 @@
 $success:#e18335;
 $white:#FFFFFF;
+$black:#000000;
 $white-ter:azure;
 $body-background-color:#000000;
 $family-sans-serif:'Open Sans Condensed';
-$modal-background-background-color: rgba($white, 0.90);
-$modal-content-width: 500px;
+$modal-background-background-color: rgba($white, 0.95);
+$modal-content-width: 640px;
+$modal-close-dimensions:20px;
 
 $schedule-light: rgba(111, 195, 247, 0.884); 
 $schedule-light-invert: findColorInvert($schedule-light);
@@ -33,3 +35,4 @@ $weather-dark-invert: findColorInvert($weather-dark);
 $custom-colors:("schedule-dark": ($schedule-dark, $schedule-dark-invert),"schedule-light": ($schedule-light, $schedule-light-invert),
 "buy-light": ($buy-light, $buy-invert-light),"buy-dark": ($buy-dark, $buy-invert-dark),"expenses-dark": ($expenses-dark, $expenses-invert-dark),"expenses-light": ($expenses-light, $expenses-invert-light),"weather-light": ($weather-light, $weather-invert-light), "weather-dark" : ($weather-dark, $weather-dark-invert),
 )
+
