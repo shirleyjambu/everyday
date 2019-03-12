@@ -13,7 +13,7 @@ class Weather extends Component {
           temp: res.data.main.temp,
           city: res.data.name,
           desc: res.data.weather[0].main,
-          icon: `http://openweathermap.org/img/w/${res.data.weather[0].icon}.png`
+          icon: `https://openweathermap.org/img/w/${res.data.weather[0].icon}.png`
         };
         this.setState({
           weatherData: weatherInfo
