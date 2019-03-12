@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import API from '../../utils/API';
-import Clock from './Clock';
 
 class Weather extends Component {
   state = {
@@ -32,7 +31,6 @@ class Weather extends Component {
     const {city, desc, temp, icon} = this.state.weatherData;
     return(
       <React.Fragment>
-        <Clock/>
         {city}&nbsp;
         {temp}{'\u00b0'}F
         <img src={icon} title={desc} alt={desc} />

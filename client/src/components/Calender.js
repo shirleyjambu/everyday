@@ -16,12 +16,23 @@ class Calender extends Component {
     events :[]
   };
 
+  convertDate = (date) => {
+    return moment.utc(date).toDate()
+  }
+
  componentDidMount() {
-     
-    API.schedule(this.state.query)
+       
+    API.schedule(this.props.user_id)
     .then(res => {
+      let appointments = res.data;
+
+      for (let i = 0; i < appointments.length; i++) {
+        appointments[i].start = this.convertDate(appointments[i].start)
+        appointments[i].end = this.convertDate(appointments[i].start)
+      }
+
       this.setState({ 
-        events : res.data
+        events : appointments
       })} 
       )
     .catch(err => console.log(err));
@@ -38,8 +49,6 @@ render() {
       style={{ height: 500, width: this.state.width }}
       localizer={localizer}
       events={events}
-      startAccessor="start"
-      endAccessor="end"
       step={60}
       views={allViews}
       onNavigate={date => this.setState({ date })}

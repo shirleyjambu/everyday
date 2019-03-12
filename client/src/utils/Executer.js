@@ -61,7 +61,7 @@ export default {
                     category : nouns,
                      cost : values}]}                     
     }
-    else if(scheduleCmd.includes(verb.trim())){
+    else if(scheduleCmd.includes(verb.trim()) || dateValue){
       section = 'schedule';
       cmdObj = {schedule :[{
           note : nouns,

@@ -20,7 +20,7 @@ class ActivityInput extends Component{
   }
 
   handleSubmit = (input) =>{
-    Executer.parse(input, this.state.user_id);
+    Executer.parse(input, this.props.user_id);
     this.props.refresh();
   }
 

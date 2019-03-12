@@ -7,13 +7,13 @@ export default {
   weather: function(query) {
     return axios.get(BASEURL + query + APIKEY);
   },
-  getUser: function(query){
-    console.log('In API getUser');
-    return axios.get('/api/user');
+  getUser: function(email){
+    console.log('In API getUser' + email);
+    return axios.get(`/api/user/${email}`);
   },
-  schedule: function(query){
+  schedule: function(user_id){
     console.log('In API Schedule');
-    return axios.get('/api/schedule');
+    return axios.get(`/api/schedule/${user_id}`);
   },
   createUser:function(userObj){
     console.log('In Create User');
@@ -26,6 +26,10 @@ export default {
   login:function(userObj){
     console.log('In Logging');
     return axios.post('/api/authenticate',userObj);
+  },
+  clear:function(empObj){
+    console.log('In Clear User');
+    return axios.put('/api/clear',empObj);
   }
 };
 

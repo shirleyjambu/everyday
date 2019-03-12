@@ -6,7 +6,8 @@ import {Heading, Tile} from 'react-bulma-components';
 class Day extends Component{
   render() {
     return (
-      <Tile renderAs="article" kind="child" notification color="info">
+      <Tile renderAs="article" kind="child" notification color={`weather-${this.props.theme}`}>
+          <Heading>Weather</Heading>
           <Heading subtitle><Weather/></Heading>
       </Tile>
     );

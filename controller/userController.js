@@ -33,8 +33,8 @@ const allSchedule = (dbUser) =>{
     let obj = {
       title: s.note,
       allDay: false,
-      start: new Date(2015, 3, 0),
-      end: new Date(2015, 3, 1)
+      start : s.time
+      //start: moment(s.time).format('YYYYMMDD hh:mm:ss a')
     }
 
     allSchArr.push(obj);
@@ -57,9 +57,9 @@ module.exports = {
       });
   },
   getUser(req, res) {
-    console.log('user Controller :' + req.params.user_id);
+    console.log('user Controller :' + req.params.id);
     db.User
-      .findById({_id:'5c8299d4a955c968c819cdfc'})
+      .findOne({email:req.params.id})
       .then((dbUser) => {
         let uArr = prepareSchedule(dbUser);
         res.json(uArr);
@@ -69,12 +69,8 @@ module.exports = {
         res.json(err)
       });
   },
+  // Update user with items todo
   update(req,res){
-    
-    console.log('User Controller - Update');
-    console.log(req.body.user_id);
-    console.log(req.body.cmdObj);
-
     db.User.findOneAndUpdate(
       { _id: req.body.user_id},
       { $push: req.body.cmdObj}
@@ -85,12 +81,28 @@ module.exports = {
       res.json(err)
     });
   },
+  // Clear items
+  clear(req,res){
+    console.log('User Controller - Clear');
+    console.log(req.body.user_id);
+    console.log(req.body.empObj);
+
+    db.User.findOneAndUpdate(
+      { _id: req.body.user_id},
+      { $set: req.body.empObj}
+    )
+    .then(dbUser => res.json(dbUser))
+    .catch((err) => {
+      console.log(err);
+      res.json(err)
+    });
+  },
   login(req,res){
-    console.log(req.body);
+    
     const { email, password } = req.body;
     db.User.findOne({ email }, function(err, user) {
       if (err) {
-        console.error(err);
+        console.log(err);
         res.status(500)
           .json({
           error: 'Internal error please try again'
@@ -125,10 +137,9 @@ module.exports = {
     });
   },
   schedule(req, res){
-    console.log('user Controller :' + req.params.user_id);
-    
-    db.User.findById(
-      { _id: '5c8299d4a955c968c819cdfc'}
+       
+    db.User.findOne(
+      { _id: req.params.id}
     )
     .then(dbUser => {
       console.log(dbUser);

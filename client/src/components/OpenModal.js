@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import{Modal, Button} from 'react-bulma-components';
+import{Modal} from 'react-bulma-components';
 import Calender from './Calender';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 
 class OpenModal extends Component {
   static propTypes = {
@@ -23,9 +25,9 @@ class OpenModal extends Component {
   render() {
     return (
       <div>
-        <Button onClick={this.open}>Open</Button>
+        <FontAwesomeIcon icon="calendar-alt" onClick={this.open} size="lg"/>
         <Modal show={this.state.show} onClose={this.close} {...this.props.modal}>
-          <Calender/>
+          <Calender user_id={this.props.user_id}/>
         </Modal>
       </div>
     );

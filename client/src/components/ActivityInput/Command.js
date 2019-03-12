@@ -20,7 +20,8 @@ class Command extends Component{
   state = {
     listening : false,
     btnText : 'Start Recording',
-    txtInput :''
+    txtInput :'',
+    message : ''
   }
 
   toggleListen =(event) =>{
@@ -42,6 +43,9 @@ class Command extends Component{
   clearInput = (event) =>{
     event.preventDefault();
     this.props.resetTranscript();
+    this.setState({
+      txtInput :''
+    })
   } 
 
   handleInput =(event) =>{
@@ -53,6 +57,7 @@ class Command extends Component{
 
   handleSubmit=(event)=>{
     event.preventDefault();
+      
     this.props.handleSubmit(this.props.finalTranscript || this.state.txtInput);
   }
 
@@ -83,12 +88,15 @@ class Command extends Component{
                   <Button onClick={this.handleSubmit} color="danger" >Execute</Button>&nbsp;
                   <Button onClick={this.toggleListen} color="danger">{this.state.btnText}</Button>&nbsp;
                   <Button onClick={this.clearInput} color="danger">Reset</Button>
+                  &nbsp;&nbsp;<span>{this.state.message}</span>
                 </div>:
                 <div>
                   <Button onClick={this.handleSubmit} color="danger" >Execute</Button>
+                  &nbsp;&nbsp;<span>{this.state.message}</span>
                </div>
             }
           </div>
+          
           </form>
         </Content>
     </React.Fragment>)

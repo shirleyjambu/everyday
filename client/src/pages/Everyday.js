@@ -3,23 +3,33 @@ import Schedule from '../components/Schedule';
 import Buy from '../components/Buy';
 import Expenses from '../components/Expenses';
 import ActivityInput from '../components/ActivityInput/ActivityInput';
-import {Box, Tile, Button} from 'react-bulma-components';
+import {Box, Tile, Hero, Heading} from 'react-bulma-components';
 import API from '../utils/API';
+import Clock from './../components/Day/Clock';
+import Day from './../components/Day/Day';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 
 class Everyday extends Component{
 
   state ={
-    user_id : '5c8299d4a955c968c819cdfc',
+    isLoggedIn : true,
+    user_id:'',
+    email:'',
     schedule : [],
     expenses : [],
     buy : [],
-    theme : 'dark'
+    theme : 'dark',
+    icon:'toggle-on'
   }
 
-  getUser = (query) =>{
-    API.getUser(query)
+    
+  getUser = (email) =>{
+    API.getUser(email)
     .then(res => {
       this.setState({ 
+        user_id : res.data._id,
+        email:res.data.email,
         schedule : res.data.schedule,
         expenses: res.data.expenses,
         buy : res.data.buy
@@ -29,39 +39,64 @@ class Everyday extends Component{
   }
 
   refresh = () =>{
-    this.getUser();
+    this.getUser(this.state.email);
   }
 
-  componentDidMount= () =>{
-    this.getUser(this.state.user_id);
+  componentDidMount =() =>{
+    this.setState({
+      email:this.props.match.params.email
+    })
+    this.getUser(this.props.match.params.email);
   }
 
   toggleStyle =()=>{
     this.setState({
-      theme:(this.state.theme ==='dark')?'light':'dark'
+      theme:(this.state.theme ==='dark')?'light':'dark',
+      icon:(this.state.icon ==='toggle-on')?'toggle-off':'toggle-on',
     })
   }
 
   render() {
-    return (
+    
+  return (
        <Box>
-         <Button onClick={this.toggleStyle}>Toggle</Button>
-        <Tile kind="ancestor">
-        <Tile size={8} vertical>
+         <Hero color="primary" gradient>
+            <Hero.Head renderAs="header">
+            <br/>
+            <div className="level">
+              <div className="level-left">
+              &nbsp;&nbsp;<FontAwesomeIcon icon={this.state.icon} onClick={this.toggleStyle} size="2x"/>
+              </div>
+              <div className="level-item">
+              <Heading><Clock/></Heading>
+              </div>
+              <div className="level-right">
+              <a href="/login"><FontAwesomeIcon icon={"power-off"} size="2x"/></a>&nbsp;&nbsp;
+              </div>
+            </div>
+            
+              <br/>
+            </Hero.Head>
+          </Hero>
+          <br/>
+         <Tile kind="ancestor">
+          <Tile size={8} vertical>
             <Tile kind="parent">
               <ActivityInput user_id={this.state.user_id} refresh={this.refresh}/>
             </Tile>
             <Tile>
               <Tile kind="parent">
-                <Buy buy={this.state.buy}/>
+                <Buy user_id={this.state.user_id} buy={this.state.buy} theme={this.state.theme} refresh={this.refresh}/>
               </Tile>
               <Tile kind="parent">
-                <Expenses expenses={this.state.expenses}/>
+                <Expenses user_id={this.state.user_id} expenses={this.state.expenses} theme={this.state.theme} refresh={this.refresh}/>
               </Tile>
             </Tile>              
         </Tile>
         <Tile kind="parent" vertical>
-        <Schedule schedule={this.state.schedule} theme={this.state.theme}/>
+        <Day theme={this.state.theme}/>
+        <Schedule user_id={this.state.user_id} schedule={this.state.schedule} theme={this.state.theme}
+        refresh={this.refresh}/>
         </Tile>
         </Tile>
       </Box>
