@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Redirect} from 'react-router-dom';
+import {Redirect,Link} from 'react-router-dom';
 import {Button, Section, Box} from 'react-bulma-components';
 import API from '../utils/API';
 import Header from './../components/Header';
@@ -81,7 +81,7 @@ class Login extends Component{
                 <Button color="primary" outlined onClick={this.handleSubmit}>
                 <strong>Login</strong>
                 </Button>&nbsp;
-                <Button color="primary" outlined renderAs='a' href="/register">
+                <Button color="primary" outlined renderAs={Link} to="/register">
                 <strong>Register</strong>
                 </Button> 
             </div>

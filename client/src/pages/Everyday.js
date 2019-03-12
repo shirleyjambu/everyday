@@ -8,6 +8,7 @@ import API from '../utils/API';
 import Clock from './../components/Day/Clock';
 import Day from './../components/Day/Day';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {Link} from 'react-router-dom';
 
 
 class Everyday extends Component{
@@ -71,7 +72,7 @@ class Everyday extends Component{
               <Heading><Clock/></Heading>
               </div>
               <div className="level-right">
-              <a href="/login"><FontAwesomeIcon icon={"power-off"} size="2x"/></a>&nbsp;&nbsp;
+              <Link to="/login"><FontAwesomeIcon icon={"power-off"} size="2x"/></Link>&nbsp;&nbsp;
               </div>
             </div>
             
