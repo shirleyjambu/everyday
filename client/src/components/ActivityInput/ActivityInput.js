@@ -1,41 +1,41 @@
-import React, {Component} from 'react';
-import Command from './Command';
-import Executer from '../../utils/Executer';
-import {Heading, Tile} from 'react-bulma-components';
+import React, { Component } from "react";
+import Message from "./Message";
+import Executer from "../../utils/Executer";
+import { Heading, Tile } from "react-bulma-components";
 
-
-class ActivityInput extends Component{
+class ActivityInput extends Component {
   state = {
-    user_id:this.props.user_id,
-    txtInput :''
-  }
+    user_id: this.props.user_id,
+    txtInput: ""
+  };
 
-  handleInput =(event) =>{
-    
-    const {name, value} = event.target;
-    
+  handleInput = event => {
+    const { name, value } = event.target;
+
     this.setState({
-      [name] : value
-    })
-  }
+      [name]: value
+    });
+  };
 
-  handleSubmit = (input) =>{
+  handleSubmit = input => {
     Executer.parse(input, this.props.user_id);
     this.props.refresh();
-  }
+  };
 
-  render(){
-    return(
+  render() {
+    return (
       <React.Fragment>
         <Tile renderAs="article" kind="child" notification color="warning">
-        <Heading>Command Center</Heading>
-        <Heading subtitle></Heading>
-          <Command value={this.state.txtInput}
-              handleInput={this.handleInput}
-              handleSubmit={this.handleSubmit}/>
-          </Tile>
+          <Heading>Message Center</Heading>
+          <Heading subtitle />
+          <Message
+            value={this.state.txtInput}
+            handleInput={this.handleInput}
+            handleSubmit={this.handleSubmit}
+          />
+        </Tile>
       </React.Fragment>
-    )
+    );
   }
 }
 
