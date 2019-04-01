@@ -11,6 +11,7 @@ const propTypes = {
   resetTranscript: PropTypes.func,
   startListening: PropTypes.func,
   stopListening: PropTypes.func,
+  onResult: PropTypes.func,
   browserSupportsSpeechRecognition: PropTypes.bool
 };
 
@@ -119,34 +120,29 @@ class Message extends Component {
                     placeholder="Enter Command"
                     value={transcript || this.state.txtInput}
                   />
-                  <FontAwesomeIcon
-                    icon={["fas", this.state.btnText]}
-                    size="1x"
-                    onClick={this.toggleListen}
-                  />
+                  {browserSupportsSpeechRecognition ? (
+                    <FontAwesomeIcon
+                      icon={["fas", this.state.btnText]}
+                      size="1x"
+                      onClick={this.toggleListen}
+                    />
+                  ) : (
+                    ""
+                  )}
                   &nbsp;
                 </div>
               </div>
 
-              {browserSupportsSpeechRecognition ? (
-                <div className="field">
-                  <Button onClick={this.handleSubmit} color="danger">
-                    {this.state.processBtnTxt}
-                  </Button>
-                  &nbsp;
-                  <Button onClick={this.clearInput} color="danger">
-                    Reset
-                  </Button>
-                  &nbsp;&nbsp;<span>{this.state.message}</span>
-                </div>
-              ) : (
-                <div>
-                  <Button onClick={this.handleSubmit} color="danger">
-                    Execute
-                  </Button>
-                  &nbsp;&nbsp;<span>{this.state.message}</span>
-                </div>
-              )}
+              <div className="field">
+                <Button onClick={this.handleSubmit} color="danger">
+                  {this.state.processBtnTxt}
+                </Button>
+                &nbsp;
+                <Button onClick={this.clearInput} color="danger">
+                  Reset
+                </Button>
+                &nbsp;&nbsp;<span>{this.state.message}</span>
+              </div>
             </div>
           </form>
         </Content>

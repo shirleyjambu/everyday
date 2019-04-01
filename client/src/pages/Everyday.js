@@ -8,6 +8,7 @@ import API from "../utils/API";
 import Clock from "./../components/Day/Clock";
 import Day from "./../components/Day/Day";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { isMobile } from "react-device-detect";
 
 import { Link } from "react-router-dom";
 
@@ -62,27 +63,53 @@ class Everyday extends Component {
         <Hero color="primary" gradient>
           <Hero.Head renderAs="header">
             <br />
-            <div className="level is-mobile">
-              <div className="level-left">
-                &nbsp;&nbsp;
-                <FontAwesomeIcon
-                  icon={icon}
-                  onClick={this.toggleStyle}
-                  size="2x"
-                />
+            {isMobile ? (
+              <div>
+                <div className="level is-mobile">
+                  <div className="level-left">
+                    &nbsp;&nbsp;
+                    <FontAwesomeIcon
+                      icon={icon}
+                      onClick={this.toggleStyle}
+                      size="2x"
+                    />
+                  </div>
+                  <div className="level-right">
+                    <Link to="/login">
+                      <FontAwesomeIcon icon={"power-off"} size="2x" />
+                    </Link>
+                    &nbsp;&nbsp;
+                  </div>
+                </div>
+                <div className="level-item">
+                  <Heading>
+                    <Clock />
+                  </Heading>
+                </div>
               </div>
-              <div className="level-item">
-                <Heading>
-                  <Clock />
-                </Heading>
+            ) : (
+              <div className="level is-mobile">
+                <div className="level-left">
+                  &nbsp;&nbsp;
+                  <FontAwesomeIcon
+                    icon={icon}
+                    onClick={this.toggleStyle}
+                    size="2x"
+                  />
+                </div>
+                <div className="level-item">
+                  <Heading>
+                    <Clock />
+                  </Heading>
+                </div>
+                <div className="level-right">
+                  <Link to="/login">
+                    <FontAwesomeIcon icon={"power-off"} size="2x" />
+                  </Link>
+                  &nbsp;&nbsp;
+                </div>
               </div>
-              <div className="level-right">
-                <Link to="/login">
-                  <FontAwesomeIcon icon={"power-off"} size="2x" />
-                </Link>
-                &nbsp;&nbsp;
-              </div>
-            </div>
+            )}
 
             <br />
           </Hero.Head>
