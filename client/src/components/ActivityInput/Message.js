@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import SpeechRecognition from "react-speech-recognition";
+//import SpeechRecognition from "react-speech-recognition";
+import SpeechRecognition from "./SpeechRecognition";
 import { Button, Content } from "react-bulma-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { isMobile } from "react-device-detect";
