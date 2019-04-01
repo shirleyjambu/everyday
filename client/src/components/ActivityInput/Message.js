@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import SpeechRecognition from "react-speech-recognition";
 import { Button, Content } from "react-bulma-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { isMobile } from "react-device-detect";
 
 const propTypes = {
   // Props injected by SpeechRecognition
@@ -95,10 +96,20 @@ class Message extends Component {
             <div className="control">
               <div className="field">
                 <label htmlFor="txtInput">Voice/Text Input</label>
-                <span>Interim : {interimTranscript}</span>
-                <br />
-                <span>Final : {finalTranscript}</span>
-                <br />
+                {isMobile ? (
+                  <p>
+                    {"Mobile"}
+                    <span>Interim - {interimTranscript}</span>
+                    <br />
+                    <span>Final - {finalTranscript}</span>
+                    <br />
+                    <span>Transcript - {transcript}</span>
+                    <br />
+                  </p>
+                ) : (
+                  <p>{""}</p>
+                )}
+
                 <div style={styles.rowC} className="input">
                   <input
                     onChange={this.handleInput}

@@ -18,13 +18,14 @@
     "react-big-calendar": "^0.20.3",
     "react-big-calendar-like-google": "0.0.3",
     "react-bulma-components": "^2.3.0",
+    "react-device-detect": "^1.6.2",
     "react-dom": "^16.8.3",
     "react-google-login": "^5.0.2",
     "react-live-clock": "^3.1.0",
     "react-moment": "^0.8.4",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.5",
-    "react-speech-recognition": "^1.0.7"
+    "react-speech-recognition": "^1.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
