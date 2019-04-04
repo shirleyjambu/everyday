@@ -31,12 +31,11 @@ class OpenModal extends Component {
           title="Calendar"
         />
         <Modal
-          style={{ backgroundColor: "white" }}
           show={this.state.show}
           onClose={this.close}
           {...this.props.modal}
         >
-          <Section>
+          <Section style={{ backgroundColor: "white" }}>
             <Calender user_id={this.props.user_id} />
           </Section>
         </Modal>

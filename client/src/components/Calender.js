@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import BigCalendar from "react-big-calendar-like-google";
 import moment from "moment";
-//import 'react-big-calendar-like-google/lib/css/react-big-calendar.css';
-import "./calender.css";
+import "react-big-calendar-like-google/lib/css/react-big-calendar.css";
+//import "./calender.css";
 import API from "./../utils/API";
 
 const localizer = BigCalendar.momentLocalizer(moment);
