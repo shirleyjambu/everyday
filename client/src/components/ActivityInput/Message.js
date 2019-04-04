@@ -4,7 +4,6 @@ import SpeechRecognition from "react-speech-recognition";
 //import SpeechRecognition from "./SpeechRecognition";
 import { Button, Content } from "react-bulma-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { isMobile } from "react-device-detect";
 
 const propTypes = {
   // Props injected by SpeechRecognition
@@ -25,6 +24,7 @@ class Message extends Component {
   state = {
     listening: false,
     btnText: "microphone-slash",
+    tooltip: "Start Recording",
     processBtnTxt: "Execute",
     txtInput: "",
     message: ""
@@ -36,7 +36,8 @@ class Message extends Component {
       this.setState(
         {
           listening: false,
-          btnText: "microphone-slash"
+          btnText: "microphone-slash",
+          tooltip: "Start Recording"
         },
         () => this.props.stopListening()
       );
@@ -44,7 +45,8 @@ class Message extends Component {
       this.setState(
         {
           listening: true,
-          btnText: "microphone"
+          btnText: "microphone",
+          tooltip: "Stop Recording"
         },
         () => this.props.startListening()
       );
@@ -60,6 +62,7 @@ class Message extends Component {
   };
 
   clear = () => {
+    alert("clear");
     this.setState({
       txtInput: "",
       processBtnTxt: "Execute"
@@ -75,13 +78,16 @@ class Message extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    this.setState({
-      processBtnTxt: "Executing"
-    });
     const txtInput = this.state.txtInput;
 
-    this.props.handleSubmit(this.props.finalTranscript || txtInput);
-    this.clear();
+    this.setState(
+      {
+        processBtnTxt: "Executing"
+      },
+      () => this.props.handleSubmit(this.props.finalTranscript || txtInput)
+    );
+
+    //this.clear();
   };
 
   render() {
@@ -108,6 +114,7 @@ class Message extends Component {
                       icon={["fas", this.state.btnText]}
                       size="1x"
                       onClick={this.toggleListen}
+                      title={this.state.tooltip}
                     />
                   ) : (
                     ""

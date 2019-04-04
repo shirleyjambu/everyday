@@ -12,7 +12,8 @@ import {
   faCalendarAlt,
   faMicrophone,
   faMicrophoneSlash,
-  faPowerOff
+  faPowerOff,
+  faSave
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -22,7 +23,8 @@ library.add(
   faCalendarAlt,
   faMicrophone,
   faMicrophoneSlash,
-  faPowerOff
+  faPowerOff,
+  faSave
 );
 
 class App extends Component {

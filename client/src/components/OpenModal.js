@@ -1,22 +1,21 @@
-import React, {Component} from 'react';
-import PropTypes from 'prop-types';
-import{Modal} from 'react-bulma-components';
-import Calender from './Calender';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { Modal, Section } from "react-bulma-components";
+import Calender from "./Calender";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class OpenModal extends Component {
   static propTypes = {
     modal: PropTypes.object,
-    children: PropTypes.node.isRequired,
+    children: PropTypes.node.isRequired
   };
 
   static defaultProps = {
-    modal: {},
+    modal: {}
   };
 
   state = {
-    show: false,
+    show: false
   };
 
   open = () => this.setState({ show: true });
@@ -25,9 +24,21 @@ class OpenModal extends Component {
   render() {
     return (
       <div>
-        <FontAwesomeIcon icon="calendar-alt" onClick={this.open} size="lg"/>
-        <Modal show={this.state.show} onClose={this.close} {...this.props.modal}>
-          <Calender user_id={this.props.user_id}/>
+        <FontAwesomeIcon
+          icon="calendar-alt"
+          onClick={this.open}
+          size="lg"
+          title="Calendar"
+        />
+        <Modal
+          style={{ backgroundColor: "white" }}
+          show={this.state.show}
+          onClose={this.close}
+          {...this.props.modal}
+        >
+          <Section>
+            <Calender user_id={this.props.user_id} />
+          </Section>
         </Modal>
       </div>
     );

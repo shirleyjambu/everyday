@@ -86,7 +86,6 @@ export default function SpeechRecognition(options) {
 
       updateTranscript(event) {
         interimTranscript = "";
-        alert(event.results.length);
         for (let i = event.resultIndex; i < event.results.length; ++i) {
           if (event.results[i].isFinal) {
             finalTranscript = this.concatTranscripts(

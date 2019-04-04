@@ -95,6 +95,7 @@ class Everyday extends Component {
                     icon={icon}
                     onClick={this.toggleStyle}
                     size="2x"
+                    title="Change Mode"
                   />
                 </div>
                 <div className="level-item">
@@ -104,7 +105,11 @@ class Everyday extends Component {
                 </div>
                 <div className="level-right">
                   <Link to="/login">
-                    <FontAwesomeIcon icon={"power-off"} size="2x" />
+                    <FontAwesomeIcon
+                      icon={"power-off"}
+                      size="2x"
+                      title="Sign Out"
+                    />
                   </Link>
                   &nbsp;&nbsp;
                 </div>

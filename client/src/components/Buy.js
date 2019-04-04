@@ -15,10 +15,18 @@ class Buy extends Component {
       .catch(err => console.log(err));
   };
 
+  update = () => {
+    let empObj = { buy: this.props.buy };
+    API.clear({ empObj, user_id: this.props.user_id })
+      .then(dbData => {
+        console.log("Updated Buy Data");
+        this.props.refresh();
+      })
+      .catch(err => console.log(err));
+  };
+
   handleUpdate = (e, index) => {
-    /*alert(this.props.buy[index]);
-    alert(e.target.value);
-    alert(index); */
+    this.props.buy[index] = e.target.value;
   };
 
   render() {
@@ -31,8 +39,7 @@ class Buy extends Component {
         color={`buy-${this.props.theme}`}
       >
         <Heading>Shopping List</Heading>
-        <Heading subtitle />
-
+        <hr />
         {this.props.buy.map((item, i) => (
           <ContentEditable
             key={i}
@@ -40,7 +47,31 @@ class Buy extends Component {
             onChange={e => this.handleUpdate(e, i)}
           />
         ))}
-        <FontAwesomeIcon icon="backspace" onClick={this.clear} size="lg" />
+        <hr />
+        <div className="level">
+          <div className="level-left">
+            <div className="level-item">
+              <FontAwesomeIcon
+                icon="backspace"
+                onClick={this.clear}
+                size="lg"
+                title="Clear"
+                className="level-item"
+              />
+            </div>
+          </div>
+          <div className="level-right">
+            <div className="level-item">
+              <FontAwesomeIcon
+                icon="save"
+                onClick={this.update}
+                size="lg"
+                title="Update"
+                className="level-item"
+              />
+            </div>
+          </div>
+        </div>
       </Tile>
     );
   }
