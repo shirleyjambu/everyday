@@ -4,7 +4,7 @@ import moment from "moment";
 import chrono from "chrono-node";
 
 const buyCmd = ["buy", "shop"];
-const expensesCmd = ["paid", "spent"];
+const expensesCmd = ["paid", "spent", "bought"];
 const scheduleCmd = ["appointment", "schedule", "class", "visit", "swim", "go"];
 
 export default {
@@ -45,7 +45,7 @@ export default {
       .values()
       .out("text")
       .trim();
-    let intValues = doc
+    /*let intValues = doc
       .values()
       .toNumber()
       .out()
@@ -53,7 +53,7 @@ export default {
     let dateValue = doc
       .dates()
       .out("text")
-      .trim();
+      .trim();*/
     let chronoDate = chrono.parseDate(command);
     let momentDt = chronoDate ? moment(chronoDate) : new Date(Date.now());
 
@@ -63,15 +63,15 @@ export default {
     console.log("Verb :" + verb);
     console.log("Nouns :" + nouns);
     console.log("Values :" + values);
-    console.log("intValues :" + intValues);
-    console.log("dateValues :" + dateValue);
+    //console.log("intValues :" + intValues);
+    //console.log("dateValues :" + dateValue);
 
     let cmdObj = {};
 
     if (buyCmd.includes(verb)) {
       section = "buy";
       cmdObj = { buy: nouns };
-    } else if (expensesCmd.includes(verb)) {
+    } else if (expensesCmd.includes(verb) || values) {
       section = "expenses";
       cmdObj = {
         expenses: [
@@ -81,7 +81,7 @@ export default {
           }
         ]
       };
-    } else if (scheduleCmd.includes(verb.trim()) || dateValue) {
+    } else if (scheduleCmd.includes(verb.trim()) || chronoDate) {
       section = "schedule";
       cmdObj = {
         schedule: [
@@ -93,7 +93,7 @@ export default {
       };
     }
 
-    console.log(cmdObj);
+    //console.log(cmdObj);
 
     API.update({ cmdObj, user_id: user_id })
       .then(data => {

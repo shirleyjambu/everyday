@@ -82,7 +82,7 @@ class Message extends Component {
 
     this.setState(
       {
-        processBtnTxt: "Executing"
+        processBtnTxt: "Execute"
       },
       () => this.props.handleSubmit(this.props.finalTranscript || txtInput)
     );
@@ -99,7 +99,9 @@ class Message extends Component {
           <form onSubmit={this.props.handleSubmit}>
             <div className="control">
               <div className="field">
-                <label htmlFor="txtInput">Voice/Text Input</label>
+                <label htmlFor="txtInput">
+                  <strong>Voice/Text Input</strong>
+                </label>
                 <div style={styles.rowC} className="input">
                   <input
                     onChange={this.handleInput}
