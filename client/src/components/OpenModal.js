@@ -35,9 +35,11 @@ class OpenModal extends Component {
           onClose={this.close}
           {...this.props.modal}
         >
-          <Section style={{ backgroundColor: "white" }}>
-            <Calender user_id={this.props.user_id} />
-          </Section>
+          <Modal.Content>
+            <Section style={{ backgroundColor: "white" }}>
+              <Calender user_id={this.props.user_id} />
+            </Section>
+          </Modal.Content>
         </Modal>
       </div>
     );
