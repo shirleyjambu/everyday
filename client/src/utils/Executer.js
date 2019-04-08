@@ -71,7 +71,7 @@ export default {
     if (buyCmd.includes(verb)) {
       section = "buy";
       cmdObj = { buy: nouns };
-    } else if (expensesCmd.includes(verb) || values) {
+    } else if (expensesCmd.includes(verb)) {
       section = "expenses";
       cmdObj = {
         expenses: [
